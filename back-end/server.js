@@ -4,22 +4,32 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
 const PORT = 3001;
 
 // default, excluir ápos a implementasção
-const toDo = [
-  {id: 1, toDo: 'Compar pão'},
-  {id: 2, toDo: 'Colocar roupa na lavadora'},
-  {id: 3, toDo: 'Deixar criaças na escola'},
-  {id: 4, toDo: 'Reaunião as 9h30'},
-  {id: 5, toDo: 'Mandar projeto para revisão'},
+const toDoList = [
+  {id: 2, task: 'Colocar roupa na lavadora'},
+  {id: 3, task: 'Deixar criaças na escola'},
+  {id: 1, task: 'Compar pão'},
+  {id: 4, task: 'Reaunião as 9h30'},
+  {id: 5, task: 'Mandar projeto para revisão'},
 ]
 
 app.get('/to-do', (req, res) => {
   return res
     .status(200)
-    .json(toDo);
+    .json(toDoList);
+})
+
+app.post('/to-do/create', (req, res) => {
+  const { newTask } = req.body;
+  const toDo = { id: Date.now(), task: newTask};
+  toDoList.push(toDo);
+  res
+    .status(201)
+    .json({ message: 'Recipe created successfully!'});
 })
 
 app.listen(PORT, () => {

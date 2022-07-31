@@ -18,7 +18,7 @@ function App() {
       {list && (
         <section>
           {list.map((toDo) => (
-            <p key={toDo.id}>{toDo.toDo}</p>
+            <p key={toDo.id}>{toDo.task}</p>
           ))}
         </section>
       )}
