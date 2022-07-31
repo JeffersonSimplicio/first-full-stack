@@ -15,13 +15,13 @@ const toDoList = [
   {id: 1, task: 'Compar pão'},
   {id: 4, task: 'Reaunião as 9h30'},
   {id: 5, task: 'Mandar projeto para revisão'},
-]
+];
 
 app.get('/to-do', (req, res) => {
   return res
     .status(200)
     .json(toDoList);
-})
+});
 
 app.post('/to-do/create', (req, res) => {
   const { newTask } = req.body;
@@ -30,7 +30,14 @@ app.post('/to-do/create', (req, res) => {
   res
     .status(201)
     .json({ message: 'Recipe created successfully!'});
-})
+});
+
+app.delete('/to-do/delete/:id', function (req, res) {
+  const { id } = req.params;
+  const taskIndex = toDoList.findIndex((task) => task.id === Number(id));
+  toDoList.splice(taskIndex, 1);
+  res.status(204).end();
+});
 
 app.listen(PORT, () => {
   console.log(`Aplicação ouvindo na porta ${PORT}`);
