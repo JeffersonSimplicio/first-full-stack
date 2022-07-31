@@ -7,19 +7,19 @@ app.use(cors());
 
 const PORT = 3001;
 
-const books = [
-	{ id: 1, title: 'O Senhor dos Anéis', author: 'J.R.R. Tolkien'},
-	{ id: 2, title: 'Duna', author: 'Frank Herbert'},
-	{ id: 3, title: 'Fundação', author: 'Isaac Asimov'},
-	{ id: 4, title: 'O Homem do Castelo Alto', author: 'Philip K Dick'},
-	{ id: 5, title: '1984', author: 'George Orwell'},
-	{ id: 6, title: 'Admirável Mundo Novo', author: 'Aldous Huxley'}
-];
+// default, excluir ápos a implementasção
+const toDo = [
+  {id: 1, toDo: 'Compar pão'},
+  {id: 2, toDo: 'Colocar roupa na lavadora'},
+  {id: 3, toDo: 'Deixar criaças na escola'},
+  {id: 4, toDo: 'Reaunião as 9h30'},
+  {id: 5, toDo: 'Mandar projeto para revisão'},
+]
 
-app.get('/books', (req, res) => {
+app.get('/to-do', (req, res) => {
   return res
     .status(200)
-    .json(books);
+    .json(toDo);
 })
 
 app.listen(PORT, () => {

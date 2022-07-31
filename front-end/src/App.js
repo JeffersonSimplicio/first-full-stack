@@ -5,20 +5,20 @@ function App() {
   const [list, setList] = useState();
 
   useEffect(() => {
-    async function getToDo() {
+    async function getTasks() {
       const characters = await getToDoList();
       setList(characters);
     }
-    getToDo();
+    getTasks();
   }, []);
 
   return (
     <main>
-      <h1>Olá, mundo!</h1>
+      <h1>To Do List</h1>
       {list && (
         <section>
           {list.map((toDo) => (
-            <p key={toDo.id}>{toDo.title}</p>
+            <p key={toDo.id}>{toDo.toDo}</p>
           ))}
         </section>
       )}
