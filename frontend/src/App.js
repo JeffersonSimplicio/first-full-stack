@@ -21,8 +21,9 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newTask !== '') {
-      addNewTask(newTask);
-      setList([...list, { id: Date.now(), task: newTask}]);
+      const builtTask = { id: Date.now(), task: newTask};
+      setList([...list, builtTask]);
+      addNewTask(builtTask);
       setNewTask('');
     } else{
       alert('Não é possível adicionar uma tarefa vazia. Por favor, digite algo!');

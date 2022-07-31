@@ -19,8 +19,7 @@ app.get('/to-do', (req, res) => {
 
 app.post('/to-do/create', (req, res) => {
   const { newTask } = req.body;
-  const toDo = { id: Date.now(), task: newTask};
-  toDoList.push(toDo);
+  toDoList.push(newTask);
   res
     .status(201)
     .json({ message: 'Recipe created successfully!'});
