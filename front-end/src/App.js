@@ -47,7 +47,8 @@ function App() {
           />
         </label>
       </form>
-      {list && (
+      {list && list.length === 0 && <p>Você ainda não possui nehuma tarefa.</p>}
+      {list && list.length > 0 && (
         <section>
           {list.map(({id, task}) => (
             <div key={id}>
