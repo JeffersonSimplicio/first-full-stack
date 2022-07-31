@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getToDoList, addNewTask } from "./services";
+import { getToDoList, addNewTask, deleteTask } from "./services";
 
 function App() {
   const [list, setList] = useState();
@@ -7,8 +7,9 @@ function App() {
 
   useEffect(() => {
     async function getTasks() {
-      const characters = await getToDoList();
-      setList(characters);
+      const tasks = await getToDoList();
+      tasks.sort((x, y) => x.id - y.id);
+      setList(tasks);
     }
     getTasks();
   }, []);
@@ -22,7 +23,13 @@ function App() {
     } else{
       alert('Não é possível adicionar uma tarefa vazia. Por favor, digite algo!');
     }
-  }
+  };
+
+  const handleDelete = (id) => {
+    deleteTask(id);
+    const filteredList = list.filter((task) => task.id !== id);
+    setList(filteredList);
+  };
 
   return (
     <main>
@@ -43,7 +50,15 @@ function App() {
       {list && (
         <section>
           {list.map(({id, task}) => (
-            <p key={id}>{task}</p>
+            <div key={id}>
+              <p>{task}</p>
+              <button
+                type="button"
+                onClick={() => handleDelete(id)}
+              >
+                Deletar
+              </button>
+            </div>
           ))}
         </section>
       )}

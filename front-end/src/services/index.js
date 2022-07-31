@@ -16,3 +16,13 @@ export async function addNewTask(newTask) {
     })
   })
 }
+
+export async function deleteTask(id) {
+  await fetch(`http://localhost:3001/to-do/delete/${id}`, {
+  method: 'DELETE',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  }
+});
+}
