@@ -47,7 +47,7 @@ function App() {
           />
         </label>
       </form>
-      {list && list.length === 0 && <p>Você ainda não possui nehuma tarefa.</p>}
+      {list && list.length === 0 && <p>Ufa... Uma folga! Você não possui tarefas no momento.</p>}
       {list && list.length > 0 && (
         <section>
           {list.map(({id, task}) => (

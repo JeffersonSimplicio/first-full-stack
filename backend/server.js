@@ -9,13 +9,7 @@ app.use(express.json());
 const PORT = 3001;
 
 // default, excluir ápos a implementasção
-const toDoList = [
-  {id: 2, task: 'Colocar roupa na lavadora'},
-  {id: 3, task: 'Deixar criaças na escola'},
-  {id: 1, task: 'Compar pão'},
-  {id: 4, task: 'Reaunião as 9h30'},
-  {id: 5, task: 'Mandar projeto para revisão'},
-];
+const toDoList = [];
 
 app.get('/to-do', (req, res) => {
   return res
