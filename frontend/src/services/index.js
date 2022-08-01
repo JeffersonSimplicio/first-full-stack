@@ -5,7 +5,7 @@ export async function getToDoList() {
 };
 
 export async function addNewTask(newTask) {
-  await fetch("http://localhost:3001/to-do/create", {
+  return await fetch("http://localhost:3001/to-do/create", {
     method: 'POST',
     headers: {
       Accept: 'application/json',

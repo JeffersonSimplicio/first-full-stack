@@ -7,6 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 const PORT = 3001;
+let ids = 0;
 
 const toDoList = [];
 // [{id: 123, task: "exemplo de tarefa"}]
@@ -17,12 +18,22 @@ app.get('/to-do', (req, res) => {
     .json(toDoList);
 });
 
+const addTask = (task) => {
+  const taskWithId = {
+    id: ids + 1,
+    task
+  }
+  ids += 1;
+  return taskWithId;
+};
+
 app.post('/to-do/create', (req, res) => {
   const { newTask } = req.body;
-  toDoList.push(newTask);
+  const taskObject = addTask(newTask);
+  toDoList.push(taskObject);
   res
     .status(201)
-    .json({ message: 'Recipe created successfully!'});
+    .json(taskObject);
 });
 
 app.put('/to-do/edit', (req, res) => {

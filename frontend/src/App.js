@@ -19,12 +19,12 @@ function App() {
     getTasks();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (newTask !== '') {
-      const builtTask = { id: Date.now(), task: newTask};
-      setList([...list, builtTask]);
-      addNewTask(builtTask);
+      const responseRaw = await addNewTask(newTask);
+      const response = await responseRaw.json();
+      setList([...list, response]);
       setNewTask('');
     } else{
       alert(EMPTY_TASK);
