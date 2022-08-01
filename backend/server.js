@@ -25,13 +25,12 @@ app.post('/to-do/create', (req, res) => {
     .json({ message: 'Recipe created successfully!'});
 });
 
-// app.put('/to-do/edit/:id', (req, res) => {
-//   const { id } = req.params;
-//   const { editedTask: task } = req.body;
-//   const taskIndex = toDoList.findIndex((task) => task.id === Number(id));
-//   toDoList[taskIndex] = { ...toDoList[taskIndex], task };
-//   res.status(204).end();
-// });
+app.put('/to-do/edit', (req, res) => {
+  const { editedTask } = req.body;
+  const taskIndex = toDoList.findIndex((task) => task.id === Number(editedTask.id));
+  toDoList[taskIndex] = editedTask;
+  res.status(204).end();
+});
 
 app.delete('/to-do/delete/:id', (req, res) => {
   const { id } = req.params;

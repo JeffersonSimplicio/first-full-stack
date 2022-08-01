@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getToDoList, addNewTask, deleteTask } from "./services";
+import { getToDoList, addNewTask, editTask, deleteTask } from "./services";
 
 function App() {
   const [list, setList] = useState();
   const [newTask, setNewTask] = useState('')
   const [inEditing, setInEditing] = useState(false)
   const [editing, setEditing] = useState('')
-  // const [taskEditing, setTaskEditing] = useState('')
 
 
   const EMPTY_TASK = 'Não é possível adicionar uma tarefa vazia. Por favor, digite algo!';
@@ -50,8 +49,9 @@ function App() {
       const taskIndex = list.findIndex((task) => task.id === Number(editing.id));
       newList[taskIndex] = { ...list[taskIndex], task: editing.task };
       setList(newList);
+      editTask(editing);
       setInEditing(false);
-      setEditing('')
+      setEditing('');
     } else{
       alert(EMPTY_TASK);
     }
