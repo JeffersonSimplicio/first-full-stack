@@ -5,9 +5,11 @@ function App() {
   const [list, setList] = useState();
   const [newTask, setNewTask] = useState('')
   const [inEditing, setInEditing] = useState(false)
-  const [editing, setEditing] = useState({ id: '', task: ''})
+  const [editing, setEditing] = useState('')
   // const [taskEditing, setTaskEditing] = useState('')
 
+
+  const EMPTY_TASK = 'Não é possível adicionar uma tarefa vazia. Por favor, digite algo!';
 
   useEffect(() => {
     async function getTasks() {
@@ -26,7 +28,7 @@ function App() {
       addNewTask(builtTask);
       setNewTask('');
     } else{
-      alert('Não é possível adicionar uma tarefa vazia. Por favor, digite algo!');
+      alert(EMPTY_TASK);
     }
   };
 
@@ -39,8 +41,21 @@ function App() {
   const openingEdit = (taskToEdit) => {
     setInEditing(true);
     setEditing(taskToEdit);
-  }
-  // handleEdit
+  };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    if (editing.task !== '') {
+      const newList = [...list];
+      const taskIndex = list.findIndex((task) => task.id === Number(editing.id));
+      newList[taskIndex] = { ...list[taskIndex], task: editing.task };
+      setList(newList);
+      setInEditing(false);
+      setEditing('')
+    } else{
+      alert(EMPTY_TASK);
+    }
+  };
 
   return (
     <main>
@@ -58,7 +73,7 @@ function App() {
         </label>
       </form>
       {inEditing && (
-        <form>
+        <form  onSubmit={handleEdit}>
           <label>
             Editar tarefa:
           <br/>
