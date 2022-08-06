@@ -23,7 +23,7 @@ router.post('/create', rescue(async (req, res) => {
 }));
 
 router.put('/edit/', rescue(async (req, res) => {
-  const editedTask = req.body;
+  const { editedTask } = req.body;
   const result = await taskEditor(DBSimulator, editedTask);
   if (result === -1) {
     return res.status(HTTP_NOT_FOUND).json({ message: 'Id Not Found' });

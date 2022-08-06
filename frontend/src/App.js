@@ -31,8 +31,8 @@ function App() {
     }
   };
 
-  const handleDelete = (id) => {
-    deleteTask(id);
+  const handleDelete = async (id) => {
+    await deleteTask(id);
     const filteredList = list.filter((task) => task.id !== id);
     setList(filteredList);
   };
@@ -42,14 +42,15 @@ function App() {
     setEditing(taskToEdit);
   };
 
-  const handleEdit = (e) => {
+  const handleEdit = async (e) => {
     e.preventDefault();
     if (editing.task !== '') {
+      const responseRaw = await editTask(editing);
+      const response = await responseRaw.json();
       const newList = [...list];
       const taskIndex = list.findIndex((task) => task.id === Number(editing.id));
-      newList[taskIndex] = { ...list[taskIndex], task: editing.task };
+      newList[taskIndex] = response;
       setList(newList);
-      editTask(editing);
       setInEditing(false);
       setEditing('');
     } else{
