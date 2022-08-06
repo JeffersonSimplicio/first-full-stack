@@ -5,8 +5,8 @@ const { fileReader, addNewTask, taskEditor, deleteTask } = require('../service/c
 
 const HTTP_OK = Number(process.env.HTTP_OK_STATUS); // 200
 const HTTP_CREATED = Number(process.env.HTTP_CREATED_STATUS); // 201
- // 204 NÃO PERMITE RESPOSTA
 const HTTP_NO_CONTENT = Number(process.env.HTTP_NO_CONTENT_STATUS); // 204
+const HTTP_NOT_FOUND = Number(process.env.HTTP_NOT_FOUND_STATUS); // 404
 const DBSimulator = '../toDoList.json';
 // [{id: 123, task: "exemplo de tarefa"}]
 
@@ -24,16 +24,18 @@ router.post('/create', async (req, res) => {
 router.put('/edit/', async (req, res) => {
   const editedTask = req.body;
   const result = await taskEditor(DBSimulator, editedTask);
-  // WIP: trabalhar o renorno em caso de id não encontrado
-  // if (validation === -1) {
-  //   erro
-  // }
+  if (result === -1) {
+    return res.status(HTTP_NOT_FOUND).json({ message: 'Id Not Found' });
+  }
   res.status(HTTP_OK).json(result);
 });
 
 router.delete('/delete/:id', async (req, res) => {
   const { id } = req.params;
-  await deleteTask(DBSimulator, id);
+  const result = await deleteTask(DBSimulator, id);
+  if (result === -1) {
+    return res.status(HTTP_NOT_FOUND).json({ message: 'Id Not Found' });
+  }
   res.status(HTTP_NO_CONTENT).end();
 });
 

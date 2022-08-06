@@ -33,9 +33,13 @@ async function taskEditor(nameFile, newData) {
 
 async function deleteTask(nameFile, idTask) {
   const toDoList = await fileReader(nameFile);
+  const taskIndex = toDoList
+    .findIndex((task) => task.id === Number(idTask));
+  if (taskIndex === -1) return -1;
   const newTaskList = toDoList
     .filter((task) => task.id !== Number(idTask));
-  fs.writeFile(nameFile, JSON.stringify(newTaskList));
+  await fs.writeFile(nameFile, JSON.stringify(newTaskList));
+  return 'OK!'
 }
 
 
