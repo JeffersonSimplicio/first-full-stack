@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "reset": "cp ../default.json ../toDoList.json"
+    "reset": "cp ./database/default.json ./database/toDoList.json"
   },
   "keywords": [],
   "author": "",

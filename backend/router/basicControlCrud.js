@@ -8,7 +8,7 @@ const HTTP_OK = Number(process.env.HTTP_OK_STATUS); // 200
 const HTTP_CREATED = Number(process.env.HTTP_CREATED_STATUS); // 201
 const HTTP_NO_CONTENT = Number(process.env.HTTP_NO_CONTENT_STATUS); // 204
 const HTTP_NOT_FOUND = Number(process.env.HTTP_NOT_FOUND_STATUS); // 404
-const DBSimulator = '../toDoList.json';
+const DBSimulator = './database/toDoList.json';
 // [{id: 123, task: "exemplo de tarefa"}]
 
 router.get('/', rescue(async (_req, res) => {
