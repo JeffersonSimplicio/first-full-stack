@@ -14,7 +14,8 @@ app.use(express.json());
 app.use('/to-do', basicControl)
 
 app.use((err, req, res, next) => {
-  const message = `[${req.method}] ${req.path} - error: ${err}\n`;
+  const date = new Date().toLocaleString();
+  const message = `[${req.method}] ${req.path} ${date} - error: ${err}\n`;
   appendFile('./errors.txt', message);
   res.status(500).json({ message: 'Erro no servidor!'});
 });
