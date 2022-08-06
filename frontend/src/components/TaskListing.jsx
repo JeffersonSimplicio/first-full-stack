@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Loading from './Loading';
 import { deleteTask } from '../services/index';
 import ToDoContext from '../context/ToDoContext';
 
@@ -23,6 +24,7 @@ function TaskListing() {
 
   return (
     <>
+      {!Array.isArray(list) && <Loading />}
       {list && list.length === 0 && <p>Ufa... Uma folga! Você não possui tarefas no momento.</p>}
       {list && list.length > 0 && (
         <section>
