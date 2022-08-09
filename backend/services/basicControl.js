@@ -6,14 +6,14 @@ const {
   deleteTask
 } = require('../models/crud');
 
-async function getAllTask() {
+async function getAllTask() { // retorna um array direto
   const allTasks = await fileReader();
   return { code: config.HTTP_OK, data: allTasks };
 }
 
 async function addTask(newTask) {
   const createdTask = await addNewTask(newTask);
-  return { code: config.HTTP_CREATED, data: createdTask }
+  return { code: config.HTTP_CREATED, data: [ createdTask ] }
 };
 
 async function editionTask(id, newTask) {
@@ -24,7 +24,7 @@ async function editionTask(id, newTask) {
     return { code: config.HTTP_NOT_FOUND, message: 'Id Not Found!' };
   };
   const editedTask = await taskEditor(id, newTask);
-  return { code: config.HTTP_OK, data: editedTask };
+  return { code: config.HTTP_OK, data: [ editedTask ] };
 };
 
 async function removeTask(id) {
