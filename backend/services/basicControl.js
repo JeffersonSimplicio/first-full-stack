@@ -7,7 +7,7 @@ const {
 } = require('../models/crud');
 const { validator, schemaTask, schemaId } = require('../utils/schema')
 
-async function getAllTask() { // retorna um array direto
+async function getAllTask() {
   const allTasks = await fileReader();
   return { code: config.HTTP_OK, data: allTasks };
 }

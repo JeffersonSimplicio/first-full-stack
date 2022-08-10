@@ -19,7 +19,7 @@ function validator(schema, body) {
   const negocio = schema.validate(body);
   if (negocio.error) {
     const message = negocio.error.details[0].message;
-    return { message }; //object
+    return { message };
   };
   const data = negocio.value;
   return { data };
