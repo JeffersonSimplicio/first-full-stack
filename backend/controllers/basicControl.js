@@ -7,7 +7,10 @@ async function getAll(_req,res) {
 
 async function createTask(req,res) {
   const { newTask } = req.body;
-  const { code, data } = await control.addTask(newTask);
+  const { code, data, message } = await control.addTask(newTask);
+  if(!data) {
+    return res.status(code).json({ message });
+  };
   return res.status(code).json(data);
 };
 
