@@ -1,4 +1,4 @@
-const config = require('../globalConfig');
+const config = require('../utils/constants');
 const {
   fileReader,
   addNewTask,

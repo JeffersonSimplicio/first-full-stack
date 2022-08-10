@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { API_PORT } = require('./globalConfig');
+const { API_PORT } = require('./utils/constants');
 const basicControl = require('./router/routerTask');
 const errorHandling = require('./controllers/error');
 
