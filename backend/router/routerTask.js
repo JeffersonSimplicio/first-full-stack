@@ -8,7 +8,7 @@ router.get('/', rescue(taskManagement.getAll));
 
 router.post('/create', rescue(taskManagement.createTask));
 
-router.put('/edit', rescue(taskManagement.editedTask));
+router.put('/edit/:id', rescue(taskManagement.editedTask));
 
 router.delete('/delete/:id', rescue(taskManagement.deleteTask));
 

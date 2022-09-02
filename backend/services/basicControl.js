@@ -1,4 +1,3 @@
-const config = require('../utils/constants');
 const {
   fileReader,
   addNewTask,
@@ -9,58 +8,49 @@ const { validator, schemaTask, schemaId } = require('../utils/schema')
 
 async function getAllTask() {
   const allTasks = await fileReader();
-  return { code: config.HTTP_OK, data: allTasks };
+  return allTasks;
 }
 
 async function addTask(newTask) {
   const validatedTask = validator(schemaTask, newTask);
   if (validatedTask.message) {
-    const { message } = validatedTask;
-    return { code: config.HTTP_BAD_REQUEST, message };
+    return { message: validatedTask.message };
   };
   const createdTask = await addNewTask(validatedTask.data);
-  return { code: config.HTTP_CREATED, data: [ createdTask ] };
+  return createdTask;
 };
 
 async function editionTask(id, newTask) {
-  //Ta com BO
-  const validatedTask = validator(schemaTask, newTask);
-  if (validatedTask.message) {
-    const { message } = validatedTask;
-    return { code: config.HTTP_BAD_REQUEST, message };
-  };
-
-  const validatedId = validator(schemaId, id);
-  if (validatedId.message) {
-    const { message } = validatedId;
-    return { code: config.HTTP_BAD_REQUEST, message };
-  };
+  const {data: dataTask, message: messageTask } = validator(schemaTask, newTask);
+  const {data: dataId, message: messageId } = validator(schemaId, id);
+  if (messageTask || messageId) {
+    return { message: messageTask || messageId };
+  }
 
   const allTasks = await fileReader();
   const taskIndex = allTasks
-    .findIndex((task) => task.id === validatedId.data);
+    .findIndex((task) => task.id === dataId);
   if (taskIndex === -1) {
-    return { code: config.HTTP_NOT_FOUND, message: 'Id Not Found!' };
+    return { message: 'Id Not Found!' };
   };
-  const editedTask = await taskEditor(validatedId.data, validatedTask.data);
-  return { code: config.HTTP_OK, data: [ editedTask ] };
+  const editedTask = await taskEditor(dataId, dataTask);
+  return editedTask;
 };
 
 async function removeTask(id) {
   const validatedId = validator(schemaId, id);
   if (validatedId.message) {
-    const { message } = validatedId;
-    return { code: config.HTTP_BAD_REQUEST, message };
+    return { message: validatedId.message };
   };
 
   const allTasks = await fileReader();
   const taskIndex = allTasks
     .findIndex((task) => task.id === validatedId.data);
   if (taskIndex === -1) {
-    return { code: config.HTTP_NOT_FOUND, message: 'Id Not Found!' };
+    return { message: 'Id Not Found!' };
   };
   await deleteTask(validatedId.data);
-  return { code: config.HTTP_NO_CONTENT }
+  return true;
 };
 
 
