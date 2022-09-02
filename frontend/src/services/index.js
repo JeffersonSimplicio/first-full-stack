@@ -17,15 +17,15 @@ export async function addNewTask(newTask) {
   })
 };
 
-export async function editTask(editedTask) {
-  return await fetch("http://localhost:3001/to-do/edit", {
+export async function editTask(id, newTask) {
+  return await fetch(`http://localhost:3001/to-do/edit/${id}`, {
     method: 'PUT',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      editedTask,
+      newTask,
     })
   })
 };

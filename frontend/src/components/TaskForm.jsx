@@ -28,7 +28,7 @@ function TaskForm() {
 
   const handleEdit = async (e) => {
     if (editing.task !== '') {
-      const responseRaw = await editTask(editing);
+      const responseRaw = await editTask(editing.id, editing.task);
       const response = await responseRaw.json();
       const newList = [...list];
       const taskIndex = list.findIndex((task) => task.id === Number(editing.id));
