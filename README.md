@@ -10,4 +10,48 @@ Esse To Do List é uma aplicação full-stack, ou seja, á uma divisão de respo
 
 O front-end foi desenvolvido com **React**, o código foi componentizado visando uma maior facilidade em futuras manutenções, atualizações e a reutilização de código. A comunicação entre os componentes foi feitai utilizando uma tecnologia interna do react, o **Context API**, dispensando a instalação de bibliotecas externas.
 
-O back-end foi desenvolvido em javascript com **node.js**, utilizando a lib **Express** para a estruturação da API, é usada uma arquitetura **MSC**(Model-Service-Controller) para distribuir responsabilidades, além de facilitar futuras manutenções e melhorias. As tarefas são salvas em um arquivo .JSON, que é editado usando ferramentas internas. 
+O back-end foi desenvolvido em javascript com **node.js**, utilizando a lib **Express** para a estruturação da API, é usada uma arquitetura **MSC**(Model-Service-Controller) para distribuir responsabilidades, além de facilitar futuras manutenções e melhorias. As tarefas são salvas em um arquivo .JSON, que é editado usando ferramentas internas.
+
+## Utilização
+
+<details>
+  <summary><strong>💻 Localmente</strong></summary>
+
+  - Para rodar a aplicação, obrigatoriamente você deve ter o `node` instalado em seu computador.
+
+  1. Clone o projeto para sua maquina
+  ```
+    git clone git@github.com:JeffersonSimplicio/first-full-stack.git
+  ```
+
+  2. Entre no diretório gerado  
+  ```
+    cd first-full-stack
+  ```
+
+  3. Entre no diretório de front-end e instale as dependências
+  ```
+    cd frontend/ && npm i && cd ..
+  ```
+
+  4. Entre no diretório de back-end e instale as dependências
+  ```
+    cd backend/ && npm i && cd ..
+  ```
+
+  5. Inicialize a aplicação back-end
+  ```
+    cd backend/ && npm start && cd ..
+  ```
+
+  6. Inicialize a aplicação front-end
+  ```
+    cd frontend/ && npm start && cd ..
+  ```
+
+  7. Abra o navegador e acesse a url: `http://localhost:3000/`
+</details>
+
+<details>
+  <summary><strong>🐳 Docker</strong></summary>
+</details>
