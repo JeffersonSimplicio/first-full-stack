@@ -54,4 +54,24 @@ O back-end foi desenvolvido em javascript com **node.js**, utilizando a lib **Ex
 
 <details>
   <summary><strong>🐳 Docker</strong></summary>
+
+  - Para rodar a aplicação com docker, é necessário ter instalando em sua maquina `Docker` e `Docker Compose`
+
+
+  1. Clone o projeto para sua maquina
+  ```
+    git clone git@github.com:JeffersonSimplicio/first-full-stack.git
+  ```
+
+  2. Entre no diretório gerado  
+  ```
+    cd first-full-stack
+  ```
+
+  3. Suba o ambiente do docker
+  ```
+    docker-compose up -d --build
+  ```
+
+  4. Abra o navegador e acesse a url: `http://localhost:3000/`
 </details>
